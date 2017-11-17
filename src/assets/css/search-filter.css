@@ -1,0 +1,121 @@
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	border: 0
+}
+.index-bnts {
+    bottom: 0px;
+}
+.index-bnts .mu-raised-button{
+	width:40%;
+	top: 20px;
+}
+.mjd-popCover {
+	height: 100%;
+	width: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+	position: absolute;
+	top: 10px;
+	z-index: 301
+}
+
+.new-filtrate {
+	background-color: #fff
+}
+
+.new-filtrate .index-ofyauto {
+	overflow-y: auto;
+	overflow-x: hidden;
+	width: 100%;
+	background-color: #f8f8f8;
+	padding: 0 0px
+}
+
+.new-filtrate .index-ofyauto .top-block {
+	position: relative;
+	overflow-x: hidden;
+	background-color: #fff;
+	
+}
+
+.new-filtrate .index-ofyauto .top-block .address-btns {
+	padding: 0px 0px 0px 0px;
+	margin-top: 7px;
+	margin-right: 30px;
+	overflow: hidden;
+	margin-bottom: 6px;
+	font-size: 13px
+}
+
+.new-filtrate .index-ofyauto .top-block .address-btns div {
+	height: 29px;
+	width: 33%;
+	color: #232326;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	padding-left: 10px;
+	margin-top: 10px;
+	float: left
+}
+
+
+.new-filtrate .index-ofyauto .top-block .address-btns span {
+	height: 28px;
+	display: block;
+	padding-left: 5px;
+	padding-right: 5px;
+	text-align: center;
+	line-height: 29px;
+	background-color: #f0f2f5;
+	border-radius: 5px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis
+}
+
+/*****价格区间********/
+.price-section {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 20px;
+}
+
+.price-section .from-to {
+    padding-left: 10px;
+    padding-right: 13px;
+    display: box;
+    display: -webkit-box;
+}
+.price-section .from-to input {
+    box-flex: 1;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -ms-box-flex: 1;
+    -o-box-flex: 1;
+    display: block;
+    background-color: #f0f2f5;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 12px;
+}
+.price-section .from-to span {
+    display: block;
+    width: 8px;
+    margin-left: 9px;
+    margin-right: 9px;
+    height: 14px;
+    border-bottom: 1px solid #848689;
+}
+.active {
+    background-color: #fff;
+    color: #f23030;
+    position: relative;
+}
