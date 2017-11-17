@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 const state = {
   isNavShow: true,
-  userInfo: ''
+  toaken: ''
 }
 const mutations = {
   showNav: (state) => {
@@ -12,13 +12,8 @@ const mutations = {
   hideNav: (state) => {
     state.isNavShow = false
   },
-  setUserInfo: (state, userInfo) => {
-    state.userInfo = userInfo
-  }
-}
-const getters = {
-  getUserInfo: (state) => {
-    return state.userInfo
+  setToaken: (state, toaken) => {
+    state.toaken = toaken
   }
 }
 const actions = {
@@ -28,17 +23,15 @@ const actions = {
   hideNav: ({ commit }) => {
     commit('hideNav')
   },
-  setUserInfo: ({
+  setToaken: ({
     commit,
-    userInfo
+    toaken
   }) => {
-    alert(userInfo)
-    commit('setUserInfo', userInfo)
+    commit('setToaken', toaken)
   }
 }
 export default new Vuex.Store({
   mutations,
   state,
-  getters,
   actions
 })

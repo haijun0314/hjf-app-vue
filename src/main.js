@@ -39,9 +39,8 @@ Vue.prototype.config = Config
 Vue.prototype.$commonUtils = CommonUtils
 Vue.config.productionTip = false
 if (window.sessionStorage.userInfo) {
-  store.dispatch('setUserInfo', window.sessionStorage.userInfo)
-  console.log(store)
-  console.log(window.sessionStorage.userInfo)
+  // store.dispatch('setUserInfo', window.sessionStorage.userInfo)
+  // console.log(window.sessionStorage.userInfo)
 }
 /* eslint-disable no-new */
 // 登录中间验证，页面需要登录而没有登录的情况直接跳转登录

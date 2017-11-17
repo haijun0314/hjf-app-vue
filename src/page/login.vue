@@ -10,17 +10,18 @@
             <mu-text-field   label="请输入您的手机号" @input="login_params_watch()"  v-model="params.telephone"   type="number"   icon="phone_iphone" labelFloat fullWidth/>
             <mu-text-field   label="请输入登陆密码"   @input="login_params_watch()"  v-model="params.password"    type="password" icon="lock_outline" labelFloat fullWidth/>
         </div>  
-        <mu-raised-button @click="login()" label="登录" class="login_btn" secondary fullWidth :disabled="login_btn_disabled" />
+        <mu-raised-button @click="login" label="登录" class="login_btn" secondary fullWidth :disabled="login_btn_disabled" />
         <div>
+        	
 			<mu-flexbox class="login_btn_other">
 			    <mu-flexbox-item >
 			      <mu-flat-button label="没有账号？立即注册" />
 			    </mu-flexbox-item>
 			    <mu-flexbox-item  >
-			      <mu-flat-button label="忘记密码" />
+			      <mu-flat-button label="忘记密码"/>
 			    </mu-flexbox-item>
 			  </mu-flexbox> 
-        </div>		        
+        </div>		
     </div>
 </template>
 
@@ -30,7 +31,7 @@ export default {
     return {
       login_btn_disabled: true,
       params: {},
-      userInfo: ''
+      toaken: ''
     }
   },
   methods: {
@@ -38,13 +39,11 @@ export default {
       this.$router.go(-1)
     },
     login () {
-      console.log(this.$store.userInfo)
-      this.$axios.get('/app/login?weblogin', this.params, res => {
+      this.$axios.get(this.config.apiUrl.login, this.params, res => {
         if (res.data.success) {
-          this.userInfo = res.data.userToken
-          window.sessionStorage.userInfo = this.userInfo.userToken
-          this.$store.dispatch('setUserInfo', this.userInfo)
-          console.log(this.$store.userInfo)
+          this.toaken = res.data.userToken
+          window.sessionStorage.toaken = this.toaken
+          this.$store.commit('setToaken', this.toaken)
         } else {
           this.$toast(res.data.msg)
         }
