@@ -1,72 +1,64 @@
+<!-- 商品详情  -->
 <template>
 	<div>
-		<header class="top_bar">
-            <a onclick="window.history.go(-1)" class="icon_back"></a>
-            <h3 class="cartname">商品详情</h3>
-            <a href="#" class="icon_menu"></a>
-        </header>
-        <main class="detail_box">
-            <section class="banner_box">
-                <ul class="banner_child_box">
-                    <li class="banner_item" v-for="item in product.picList">
-                        <img v-lazy="item" alt="" class="banner_pic">
-                    </li>
-                
-                </ul>
-                <div class="banner_count">
-                        <em id="slide-nub" class="fz18">1</em>
-                        <em class="nub-bg">/</em>
-                        <em id="slide-sum" class="fz12">5</em>
-                </div>
-            </section>
-            <section class="product_info clearfix">
-                <div class="product_left">
-                    <p class="p_name">{{product.productName}}</p>
-                    <div class="product_pric">
-                        <span>￥</span>
-                        <span class="rel_price">{{product.marketPrice}}</span>
-                        <span>.00</span>
-                    </div>
-                    <div class="product_right">
-                                            降价通知
-                    </div>
-                </div>
-            </section>
-            <section class="product_intro">
-                <p class="pro_det">
-                    {{product.detailDesc}}
-                </p>
-           </section>
-        </main>
-        <footer class="cart_d_footer">
-            <div class="m">
-                <ul class="m_box">
-                    <li class="m_item">
-                        <a href="" class="m_item_link">
-                            <em class="m_item_pic"></em>
-                            <span class="m_item_name">卖家</span>
-                        </a>
-                        <a href="" class="m_item_link">
-                            <em class="m_item_pic two"></em>
-                            <span class="m_item_name">关注</span>
-                        </a>
-                        <a href="" class="m_item_link">
-                            <em class="m_item_pic three"></em>
-                            <span class="m_item_name">购物车</span>
-                        </a>
-                    </li>
-                </ul>
-                <div class="btn_box clearfix" >
-                    <a href="#" class="buy_now">加入购物车</a>
-                    <a href="#" class="buybuy">立即购买</a>
-                </div>
-            </div>
-        </footer>
+        <mu-appbar title="商品详情"  titleClass="common_bar_title">
+            <mu-icon-button icon="keyboard_arrow_left" slot="left" @click="go_back()" />
+        </mu-appbar>
+        <!-- 商品详情轮播图  -->
+		<van-swipe :autoplay="3000">
+			<van-swipe-item v-for="item in product.picList" :key="index">
+		    	<img :src="item"  style="width: 100%;"/>
+			</van-swipe-item>
+		</van-swipe>
+		<!-- 商品名称价格  -->
+	    <van-cell-group>
+		    <van-cell>
+		        <div class="goods-title">{{ product.productName}}</div>
+		        <div class="goods-price">{{ product.marketPrice}}</div>
+		    </van-cell>
+		    <van-cell class="goods-express">
+		        <van-col span="10">运费：11</van-col>
+		        <van-col span="14">剩余：345</van-col>
+		    </van-cell>
+		</van-cell-group>
+		<van-cell-group class="goods-cell-group">
+		    <van-cell value="进入店铺" icon="shop" isLink>
+		        <template slot="title">
+			        <span class="van-cell-text">有赞的店</span>
+			        <van-tag type="danger">官方</van-tag>
+		        </template>
+		    </van-cell>
+		    	<van-cell title="线下门店" icon="location" isLink></van-cell>
+		</van-cell-group>
+		<van-cell-group class="goods-cell-group">
+		    <van-cell title="查看商品详情" isLink></van-cell>
+		</van-cell-group>
+        <div>
+           <p class="pro_det" v-html="product.detailDesc"></p>
+        </div>
+        <div style="height: 40px;"></div>
+        <div>
+			 <van-goods-action>
+			  <van-goods-action-mini-btn icon="chat" @click="onClickMiniBtn">
+			    客服
+			  </van-goods-action-mini-btn>
+			  <van-goods-action-mini-btn icon="cart" @click="onClickMiniBtn">
+			    购物车
+			  </van-goods-action-mini-btn>
+			  <van-goods-action-big-btn @click="onClickBigBtn">
+			    加入购物车
+			  </van-goods-action-big-btn>
+			  <van-goods-action-big-btn @click="onClickBigBtn" primary>
+			    立即购买
+			  </van-goods-action-big-btn>
+			</van-goods-action>       	
+        </div> 
 	</div>
 </template>
 <script>
 export default{
   mounted () {
+    this.$store.dispatch('hideNav') // 隐藏 底部导航栏
     this.$parent.$data.shownav = false
     this.loadProduct(this.$route.params.id)
   },
@@ -79,6 +71,9 @@ export default{
   watch: {
   },
   methods: {
+    go_back () {
+      this.$router.go(-1)
+    },
     loadProduct (productId) {
       this.$axios.get('/product?detail&productId=' + productId, null, r => {
         this.product = r.data
@@ -87,6 +82,32 @@ export default{
   }
 }
 </script>
-<style>
-@import '../../assets/css/detail.css';
+<style lang="less">
+.goods {
+  padding-bottom: 50px;
+  &-swipe {
+    img {
+      width: 7.5rem;
+      height: 7.5rem;
+      display: block;
+    }
+  }
+  &-title {
+    font-size: 16px;
+  }
+  &-price {
+    color: #f44;
+  }
+  &-express {
+    color: #999;
+    font-size: 12px;
+    padding: 5px 15px 5px 0;
+  }
+  &-cell-group {
+    margin: 15px 0;
+    .van-cell__value {
+      color: #999;
+    }
+  }
+}
 </style>

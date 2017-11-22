@@ -44,6 +44,10 @@ export default {
           this.toaken = res.data.userToken
           window.sessionStorage.toaken = this.toaken
           this.$store.commit('setToaken', this.toaken)
+          // let redirect = decodeURIComponent(this.$route.query.redirect || '/')
+          this.$router.push({
+            path: '/'
+          })
         } else {
           this.$toast(res.data.msg)
         }

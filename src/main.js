@@ -19,6 +19,9 @@ import InfiniteScroll from 'vue-infinite-scroll'// 滚动刷新组件
 // 提示框组件
 import 'vue2-toast/lib/toast.css'
 import Toast from 'vue2-toast'
+import Vant from 'vant'
+import 'vant/lib/vant-css/index.css'
+Vue.use(Vant)
 Vue.use(Toast)
 Vue.use(Vuex)
 Vue.use(InfiniteScroll)
@@ -46,7 +49,7 @@ if (window.sessionStorage.userInfo) {
 // 登录中间验证，页面需要登录而没有登录的情况直接跳转登录
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (store.state.userInfo) {
+    if (store.state.toaken) {
       next()
     } else {
       next({

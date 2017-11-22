@@ -15,7 +15,7 @@ export default {
       } else {
         this.$store.dispatch('showNav')
       }
-      if (to.path === '/search' || to.path === '/login' || to.path === '/register') {
+      if (to.path === '/search' || to.path === '/login' || to.path === 'product/detail') {
         this.$store.dispatch('hideNav')
       }
     }
