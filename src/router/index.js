@@ -7,6 +7,7 @@ import Cart from '@/page/cart/index'
 import Account from '@/page/account/index'
 import Search from '@/page/product/search.vue'
 import ProductDetail from '@/page/product/detail.vue'
+import Comment from '@/page/product/comment.vue'
 import Login from '@/page/login.vue'
 Vue.use(Router)
 
@@ -23,6 +24,10 @@ export default new Router({
     {
       path: '/product/detail/:id',
       component: ProductDetail
+    },
+    {
+      path: '/product/comment/:id',
+      component: Comment
     },
     {
       path: '/category',
