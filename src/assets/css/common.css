@@ -1,5 +1,13 @@
-    .common_bar_title{
-        text-align:center;
-        font-size: 1.15em;
-        margin-right: 15.2%;
-    }
+ /***通用标题栏***/   
+.common_bar_title{
+    text-align:center;
+    font-size: 1.15em;
+    margin-right: 15.2%;
+}
+ /***下拉列表没有更多数据***/   
+.noMoreData{
+	font-size: 13px;
+	text-align: center;
+	color: #999999;
+	line-height: 30px;
+}
