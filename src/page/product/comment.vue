@@ -5,7 +5,6 @@
         <mu-appbar title="商品评论"  titleClass="common_bar_title">
             <mu-icon-button icon="keyboard_arrow_left" slot="left" @click="go_back()" />
         </mu-appbar>
- 	
 		<!-- 商品评论  -->
 		<van-cell-group class="goods-cell-group">
 		    <van-cell :value="commentScoreRate">
@@ -19,10 +18,10 @@
 		<van-cell-group class="goods-cell-group">
 		    <van-cell>
 				<van-row gutter="10">
-					<van-col span="6"><van-button @click="filter_comments('all')" :type="levelList.all.class_type"  size="small">全部{{levelList.all.value}}</van-button></van-col>
-					<van-col span="6"><van-button @click="filter_comments('good')" :type="levelList.good.class_type" size="small">好评{{levelList.good.value}}</van-button></van-col>
-					<van-col span="6"><van-button @click="filter_comments('normal')" :type="levelList.normal.class_type" size="small">中评{{levelList.normal.value}}</van-button></van-col>
-					<van-col span="6"><van-button @click="filter_comments('bad')" :type="levelList.bad.class_type" size="small">差评{{levelList.bad.value}}</van-button></van-col>
+					<van-col span="6"><van-button @click="filter_comments(0)" :type="levelList[0].class_type"  size="small">全部{{levelList[0].value}}</van-button></van-col>
+					<van-col span="6"><van-button @click="filter_comments(1)" :type="levelList[1].class_type" size="small">好评{{levelList[1].value}}</van-button></van-col>
+					<van-col span="6"><van-button @click="filter_comments(2)" :type="levelList[2].class_type" size="small">中评{{levelList[2].value}}</van-button></van-col>
+					<van-col span="6"><van-button @click="filter_comments(3)" :type="levelList[3].class_type" size="small">差评{{levelList[3].value}}</van-button></van-col>
 				</van-row>	       
 		    </van-cell>
 		</van-cell-group>
@@ -64,7 +63,7 @@ export default{
       commentCount: null,
       commentScoreRate: '',
       dataList: [],
-      levelList: {'all': {'value': 1002, 'class_type': 'danger'}, 'good': {'value': 554, 'class_type': 'default'}, 'normal': {'value': 1002, 'class_type': 'default'}, 'bad': {'value': 554, 'class_type': 'default'}}
+      levelList: [{'value': 1002, 'class_type': 'danger'}, {'value': 554, 'class_type': 'default'}, {'value': 1002, 'class_type': 'default'}, {'value': 554, 'class_type': 'default'}]
     }
   },
   methods: {
@@ -96,30 +95,13 @@ export default{
       })
     },
     filter_comments (type) {
-      if (type === 'all') {
-        this.params.level = null
-        this.levelList.all.class_type = 'danger'
-      } else {
-        this.levelList.all.class_type = 'default'
+      for (var i = 0; i < this.levelList.length; i++) {
+        if (type > 0) {
+          this.params.level = type - 1
+        }
+        this.levelList[i].class_type = 'default'
       }
-      if (type === 'good') {
-        this.params.level = 0
-        this.levelList.good.class_type = 'danger'
-      } else {
-        this.levelList.good.class_type = 'default'
-      }
-      if (type === 'normal') {
-        this.params.level = 1
-        this.levelList.normal.class_type = 'danger'
-      } else {
-        this.levelList.normal.class_type = 'default'
-      }
-      if (type === 'bad') {
-        this.params.level = 2
-        this.levelList.bad.class_type = 'danger'
-      } else {
-        this.levelList.bad.class_type = 'default'
-      }
+      this.levelList[type].class_type = 'danger'
       this.loadComment()
     }
   }
